@@ -1,3 +1,7 @@
+import { getChats } from '../services/api';
+
+import type { ChatInfo } from '@/types';
+
 export const getTimeFromTimestamp = (timestamp: number): string => {
   const timeValues = new Date(timestamp * 1000).toLocaleTimeString().split(':');
   timeValues.splice(-1, 1);
@@ -48,4 +52,9 @@ export function timeDifference(current: number, previous: number): string {
   }
 
   return `${value} ${plural(wordForms, value)} назад`;
+}
+
+export async function loader(): Promise<{ chats: ChatInfo[] }> {
+  const chats = await getChats();
+  return { chats };
 }

@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
 
 import { Avatar } from '@components/avatar/avatar';
 import { ChatsList } from '@components/chats-list/chat-list';
 
 import logoutImage from '../../images/logout.svg';
-import { getChats } from '../../services/api';
 
 import type { ChatInfo } from '@/types';
 import type { /*ChangeEvent,*/ ReactElement } from 'react';
@@ -13,11 +11,7 @@ import type { /*ChangeEvent,*/ ReactElement } from 'react';
 import styles from './list.module.css';
 
 export const ListPage = (): ReactElement => {
-  const [chats, setChats] = useState<ChatInfo[]>([]);
-
-  useEffect(() => {
-    void getChats().then(setChats);
-  }, []);
+  const { chats } = useLoaderData<{ chats: ChatInfo[] }>();
 
   // const [searchValue, setSearchValue] = useState('');
 
