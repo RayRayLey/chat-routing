@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import { Avatar } from '@components/avatar/avatar';
 import { ChatsList } from '@components/chats-list/chat-list';
@@ -35,7 +36,7 @@ export const ListPage = (): ReactElement => {
         </div>
         <ChatsList chats={chats} />
       </div>
-      {/* Здесь должен быть ваш код */}
+      <Outlet />
     </div>
   );
 };
